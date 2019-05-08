@@ -1,4 +1,4 @@
-# data_buoyancy_regulating_phytop
+# data-buoyancy-regulating-phytoplankton
 
 Scripts and data to reproduce draft's figures.
 All .gpl files produce figures using gnuplot, 
