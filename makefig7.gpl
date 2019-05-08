@@ -1,0 +1,88 @@
+set term post eps enh color 24
+
+set output 'fig7.eps'
+set size 1.25,1.25
+set origin 0,0
+set multiplot
+
+# dashed line S=0.5
+set arrow from 0.25,0.5 to 10.,0.5 nohead dt 2 lw 2 lc 0
+
+#############
+# segreg thick
+set xla 'r/{/Symbol h}'                                                           
+set yla 'S_{1,2}(r)'                                          
+set format y "10^{%T}"
+set format x "10^{%T}"
+set log
+unset key 
+
+set xra [0.25:180]
+set yra [1.e-2:1.5] 
+                                                                                  
+n=0.039 
+
+set size 1.25,1.25
+set origin 0,0
+pl 'data/S6v6_S1v6.dat' u ($1/n):2 every ::::8 t '{/Symbol P}=30' lw 3 ps 2 pt 4 w lp,\
+'data/S6v5_S1v6.dat' u ($1/n):2 every ::::8 t '{/Symbol P}=20' lw 3 ps 2 pt 4 w lp,\
+'data/S6v4_S1v6.dat' u ($1/n):2 every ::::8 t '{/Symbol P}=10' lw 3 ps 2 pt 4 w lp,\
+'data/S6v3_S1v6.dat' u ($1/n):2 every ::::8 t '{/Symbol P}=7' lw 3 ps 2 pt 4 w lp,\
+'data/S6v2_S1v6.dat' u ($1/n):2 every ::::8 t '{/Symbol P}=3' lc 7 lw 3 ps 1 pt 4 w lp,\
+'data/S6v1_S1v6.dat' u ($1/n):2 every ::::8 t '{/Symbol P}=1' lw 3 ps 2 pt 4 w lp,\
+'data/thickL1_thin01.dat' u ($1/n):2 every ::::8 t 'poisson' lc 0 lw 3 w l 
+#0.5 dt 2 lc 0  not
+
+unset arrow
+
+#############
+# inset top R*
+set size 0.5,0.5
+set origin 0.74,0.74
+unset key
+unset log
+set xra [0:31]
+set yra [2.3:4.5]
+set ytics 2.2,0.4,4.4 offs 0.3 font ",18"
+set xtics 0,10,40 offs 0,0.3 font ",18"
+set format "{%g}"
+set xla '{/Symbol P}' offs 0,1.3 font ",20"
+set yla 'R*/{/Symbol h}' offs 2 font ",20"
+
+
+pl 'data/R_star_S6vi_S1v6.dat' u ($1/0.31):($2/0.039) lc 0 lw 2 w l,\
+'data/R_star_S6vi_S1v6.dat' every ::5::5 u ($1/0.31):($2/0.039) ps 2 pt 5 lc 1,\
+'data/R_star_S6vi_S1v6.dat' every ::4::4 u ($1/0.31):($2/0.039) ps 2 pt 5 lc 2 ,\
+'data/R_star_S6vi_S1v6.dat' every ::3::3 u ($1/0.31):($2/0.039) ps 2 pt 5 lc 3 ,\
+'data/R_star_S6vi_S1v6.dat' every ::2::2 u ($1/0.31):($2/0.039) ps 2 pt 5 lc 4,\
+'data/R_star_S6vi_S1v6.dat' every ::1::1 u ($1/0.31):($2/0.039) ps 2 pt 5 lc 7,\
+'data/R_star_S6vi_S1v6.dat' every ::::0 u ($1/0.31):($2/0.039) ps 2 pt 5 lc 6,\
+2.50577 lw 2 lc 0 dt 2 w l
+
+
+
+
+#############
+# plot part S6v6_S1v6
+set size 0.65,0.65
+set origin 0.05,0.15
+set xra [0:2*pi]
+set yra [0:2*pi]
+set size square
+unset xla
+unset yla
+unset xtics
+unset ytics
+unset colorbox
+unset key
+unset log
+
+load 'reds.pal'
+pl 'data/neigh_thin_Sh1.H' u 1:3:4 palette ps 0.2 pt 7
+load 'greens.pal'
+pl 'data/neigh_thick_Sh6.H' u 1:3:4 palette ps 0.2 pt 7
+
+
+
+
+

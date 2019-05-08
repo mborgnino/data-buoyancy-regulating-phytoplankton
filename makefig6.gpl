@@ -1,0 +1,76 @@
+
+set term post eps enh color 28
+
+set xla 'T_s/T_{max}'
+set yla 'P(T_s)'
+
+vmax=3.1
+T=2.*pi/vmax
+
+set key horizontal at 32,1.23
+#set key font ",24" at 35,1.1
+
+
+set output 'fig6.eps'
+set size 2.1,1.05
+set origin 0,0
+set multiplot
+
+unset log
+set xra [0:18]
+set yra [0:1.1]
+
+set format y "%1.1f"
+set format x "%1.0f"
+
+# 1 THICK
+set size 1,1
+set origin 0,0
+pl 'data/64/thick/pdf_tau_S4.04' u ($1/T):($2*T) t '{/Symbol e}=10^{-10}' lw 3 w l, \
+'data/128/thick/pdf_tau_S4.04' u ($1/T):($2*T) t '{/Symbol e}=10^{-9}' lw 3 w l, \
+'data/512/thick/pdf_tau_S4.04' u ($1/T):($2*T) t '{/Symbol e}=10^{-7}' lw 3 w l
+
+# 2 THIN
+set size 0.95,1
+set origin 1,0
+unset key
+unset yla
+set xra [0:12]
+set yra [0:2.6]
+
+pl 'data/64/thin/pdf_tau_S4.04' u ($1/T):($2*T) t '{/Symbol e}=10^{-10}' lw 3 w l, \
+'data/128/thin/pdf_tau_S4.04' u ($1/T):($2*T) t '{/Symbol e}=10^{-9}' lw 3 w l
+
+
+### INSET
+
+unset key
+set format y "10^{%T}"
+set format x "10^{%T}"
+set log
+set xra [0.07:50]
+set yra [3.e-5:5]
+set xtics 0,10,200 font ',20' offset 0,0.4
+set ytics 0,1.e-2,10 font ',20' offset 0.5,0
+set xla 'T_s/T_{max}' font ',20' offset 0,1
+set yla 'P(T_s)' font ',20' offset 2,0
+
+# inset 1 THICK
+set size 0.67,0.67
+set origin 0.33,0.33
+
+
+pl 'data/64/thick/pdf_tau_S4.04' u ($1/T):($2*T) t '{/Symbol e}=10^{-10}' lw 3 w l, \
+'data/128/thick/pdf_tau_S4.04' u ($1/T):($2*T) t '{/Symbol e}=10^{-9}' lw 3 w l, \
+'data/512/thick/pdf_tau_S4.04' u ($1/T):($2*T) t '{/Symbol e}=10^{-7}' lw 3 w l
+
+# inset 2 THIN
+set size 0.67,0.67
+set origin 1.28,0.33
+
+
+pl 'data/64/thin/pdf_tau_S4.04' u ($1/T):($2*T) t '{/Symbol e}=10^{-10}' lw 3 w l, \
+'data/128/thin/pdf_tau_S4.04' u ($1/T):($2*T) t '{/Symbol e}=10^{-9}' lw 3 w l
+
+
+

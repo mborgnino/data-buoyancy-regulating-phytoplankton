@@ -1,0 +1,77 @@
+set term post eps enh color 24
+
+set output 'fig1.eps'
+
+set size 1,1.1
+set origin 0,-0.04
+set multiplot
+
+set xra [0:4.7]
+set yra [0:2.]
+
+set size 1,1
+set origin 0,0
+
+set yla 'p(S*{/Symbol t}_{/Symbol h})'  offset 1
+set xla 'S*{/Symbol t}_{/Symbol h}' offset 0,-0.5 
+
+
+set label 6 '' at 3.0,0.005 left offset char 2,0 point pt 7 ps 2 lw 3 lc 7 #rgb 'red'
+set label 5 '' at 1.36,0.09 left offset char 2,0 point pt 7 ps 2 lw 3 lc 6 
+set label 4 '' at 0.466,1.69 left offset char 2,0 point pt 7 ps 2 lw 3 lc 4
+set label 3 '' at 0.3,1.2 left offset char 2,0 point pt 7 ps 2 lw 3 lc 3
+set label 2 '' at 0.18,0.37 left offset char 2,0 point pt 7 ps 2 lw 3 lc 2
+set label 1 '' at 0.06,0.01 left offset char 2,0 point pt 7 ps 2 lw 3 lc 1
+
+set arrow from 3.0,0.005 to 3.0,0. nohead dt 3 lw 4 lc 7 
+set arrow from 1.36,0.09 to 1.36,0. nohead dt 3 lw 4 lc 6
+set arrow from 0.4668,1.69 to 0.4668,0. nohead dt 3 lw 4 lc 4
+set arrow from 0.3,1.2 to 0.3,0. nohead dt 3 lw 4 lc 3
+set arrow from 0.18,0.37 to 0.18,0. nohead dt 3 lw 4 lc 2
+set arrow from 0.06,0.01 to 0.06,0. nohead dt 3 lw 3 lc 1
+
+pl 'data/S_euler.128_tau' not lc 0 lw 5 w l
+
+unset label 1
+unset label 2
+unset label 3
+unset label 4
+unset label 5
+unset label 6
+
+# inset up 
+set size 0.5,0.39
+set origin 0.47,0.58
+
+set label 1 "{/=24 (a)}" at 28,0.18
+
+set yla 'f_R(S)' offset 2.2,0 font ",20"
+unset xla
+
+set yra [0:1]
+set ytics 0,0.2,1 font ',20' 
+unset xtics
+
+unset arrow
+
+set xra [0:35]
+
+pl x/(x+0.5) not lw 3 w l, \
+x/(x+3.89) not lc 4 lw 3 w l, \
+x/(x+25.0) not lc 7 lw 3 w l
+
+
+# inset down
+set size 0.5,0.44
+set origin 0.47,0.22
+
+set label 1 "{/=24 (b)}" at 28,0.8
+
+set xla 'S' offset -0.8,1.6 font ",20"
+set xtics 0,10,40 offset 0,0.5 font ',20'   
+
+set yla '1-f_R(S)' offset 2.2,0 font ",20"
+
+pl 1-x/(x+0.5) not  lw 3 w l, \
+1-x/(x+3.89) not lw 3 lc 4 w l, \
+1-x/(x+25.0) not lw 3 lc 7 w l

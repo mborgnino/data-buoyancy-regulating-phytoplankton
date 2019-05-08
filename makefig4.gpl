@@ -1,0 +1,42 @@
+set term post eps enh color 24
+set colorsequence default
+set key b r
+set size 1,1
+
+set xla '{/Symbol \341}v_{s}{/Symbol \361}/u_{/Symbol h}'
+set yla '{/Symbol \341}u_z{/Symbol \361}/u_{/Symbol h}'
+
+set log x
+set output 'fig4.eps'
+
+set style line 1 lc 7 lw 3 ps 1.5 pt 4
+set style line 2 lc 2 lw 3 ps 1.5 pt 6
+set style line 3 lc 5 lw 3 ps 1.5 pt 8
+set style line 4 lc 4 lw 3 ps 1.5 pt 10
+set style line 5 lc 3 lw 3 ps 1.5 pt 12
+set style line 6 lc 1 lw 3 ps 1.5 pt 14
+set style line 7 lc 7 lw 3 dt 2 ps 1.5 pt 4
+set style line 8 lc 2 lw 3 dt 2 ps 1.5 pt 6
+set style line 9 lc 5 lw 3 dt 2 ps 1.5 pt 8
+set style line 10 lc 4 lw 3 dt 2 ps 1.5 pt 10
+set style line 11 lc 3 lw 3 dt 2 ps 1.5 pt 12
+set style line 12 lc 1 lw 3 dt 2 ps 1.5 pt 14
+
+
+un=0.31
+
+
+pl 'data/v_thick_S6.dat'  u ($3/un):($2/un) t 'S_{H6}' lc 7 lw 3 ps 1.5 pt 14 w lp, \
+'data/v_thick_S5.dat' u ($3/un):($2/un) t 'S_{H5}' lc 6 lw 3 ps 1.5 pt 12 w lp, \
+'data/v_thick_S4.dat' u ($3/un):($2/un)  t 'S_{H4}' lc 4 lw 3 ps 1.5 pt 10 w lp, \
+'data/v_thick_S3.dat' u ($3/un):($2/un)  t 'S_{H3}' lc 3 lw 3 ps 1.5 pt 8 w lp, \
+'data/v_thick_S2.dat' u ($3/un):($2/un) t 'S_{H2}' lc 2 lw 3 ps 1.5 pt 6 w lp, \
+'data/v_thick_S1.dat' u ($3/un):($2/un) t 'S_{H1}' lc 1 lw 3 ps 1.5 pt 4 w lp , \
+'data/v_thin_S6.dat'  u ($3/un):($2/un) not lc 7 lw 3 ps 1.5 pt 14 dt 2 w lp, \
+'data/v_thin_S5.dat' u ($3/un):($2/un) not lc 6 lw 3 ps 1.5 pt 12 dt 2 w lp, \
+'data/v_thin_S4.dat' u ($3/un):($2/un)  not lc 4 lw 3 ps 1.5 pt 10 dt 2 w lp, \
+'data/v_thin_S3.dat' u ($3/un):($2/un)  not lc 3 lw 3 ps 1.5 pt 8 dt 2 w lp, \
+'data/v_thin_S2.dat' u ($3/un):($2/un) not lc 2 lw 3 ps 1.5 pt 6 dt 2 w lp, \
+'data/v_thin_S1.dat' u ($3/un):($2/un) not lc 1 lw 3 ps 1.5 pt 4 dt 2 w lp, 0 not lc 0
+
+ 
